@@ -1,7 +1,9 @@
 # iagnmft-nodejs
+
 Node JS affiliate SPA built with NextJS and React
 
 ##
+
 Amazon Reseller shop for iaintgotnomoneyforthat.com with automated import scripts using the Amazon Reselllers API.
 
 ## NextJS
@@ -31,7 +33,7 @@ To learn more about Next.js, take a look at the following resources:
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) 
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/)
 
 ## TODO
 
