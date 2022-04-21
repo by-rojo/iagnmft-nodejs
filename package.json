@@ -1,9 +1,13 @@
 {
   "name": "iagnmft-nodejs",
-  "version": "0.0.1",
+  "version": "0.1.0",
+  "private": true,
   "description": "Amazon Reseller shop for iaintgotnomoneyforthat.com with automated import scripts using the Amazon Reselllers API.",
-  "main": "index.js",
   "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
     "test": "jest"
   },
   "repository": {
@@ -20,5 +24,18 @@
   "bugs": {
     "url": "https://github.com/by-rojo/iagnmft-nodejs/issues"
   },
-  "homepage": "https://github.com/by-rojo/iagnmft-nodejs#readme"
+  "homepage": "https://github.com/by-rojo/iagnmft-nodejs#readme",
+  "dependencies": {
+    "next": "12.1.5",
+    "react": "18.0.0",
+    "react-dom": "18.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "17.0.25",
+    "@types/react": "18.0.5",
+    "@types/react-dom": "18.0.1",
+    "eslint": "8.13.0",
+    "eslint-config-next": "12.1.5",
+    "typescript": "4.6.3"
+  }
 }
