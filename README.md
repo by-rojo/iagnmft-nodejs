@@ -35,13 +35,16 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/)
 
-## TODO
+## State Management
+Each page is going to be rendered using `getStaticProps` because its incredibly performant. These pages will be rendered at build time and recompiled on the server when the expiry time has past.
 
-[] setup next js
-[] setup vscode
-[] setup husky
-[] setup github actions
-[] add tests
-[] write documentation
-[] hook up Google Cloud
-[] deploy to production
+All of the static page data is available via context api.
+
+### Step 1
+First setup the page with `getStaticProps`
+```
+
+```
+
+## TODO
+[ ] Add unit tests
