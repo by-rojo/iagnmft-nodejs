@@ -1,0 +1,3 @@
+interface HomePageStaticData {
+  menu: MenuData
+}

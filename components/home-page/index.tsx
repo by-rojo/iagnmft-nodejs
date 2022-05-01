@@ -1,7 +1,10 @@
 import React from 'react'
+import useStaticHomePageData from './hooks'
 
 const HomePage: React.FC = () => {
-  return <div className="test"></div>
+  const stuff = useStaticHomePageData()
+
+  return <div className="test">{JSON.stringify(stuff)}</div>
 }
 
 export default HomePage
