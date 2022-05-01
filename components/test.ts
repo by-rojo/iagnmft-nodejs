@@ -1,5 +1,5 @@
-describe("Test", () => {
-    it("should run", () => {
-        expect("test").toBe("test")
-    })
+describe('Test', () => {
+  it('should run', () => {
+    expect('test').toBe('test')
+  })
 })
