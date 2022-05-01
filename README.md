@@ -41,10 +41,87 @@ Each page is going to be rendered using `getStaticProps` because its incredibly 
 All of the static page data is available via context api.
 
 ### Step 1
-First setup the page with `getStaticProps`
+First setup the page in `/page/<your-page>.tsx` with `getStaticProps`
+
+```tsx
+import type { NextPage } from 'next'
+import someAPICall from '../api-factory/wp/menus'
+import SomeComponent from '../components/some-component'
+import { StaticPageContext } from '../context/static-page-context'
+
+type SomeData = {
+    success: boolean
+}
+
+interface SomePageStaticData {
+  someData: SomeData
+}
+
+const SomePage: NextPage<SomePageStaticData> = ({ someData }) => {
+  const staticPageData: DefaultContext<SomePageStaticData> = {
+    menu,
+  }
+
+  return (
+    <StaticPageContext data={staticPageData}>
+      <SomeComponent />
+    </StaticPageContext>
+  )
+}
+
+// This function gets called at build time on server-side.
+// It may be called again, on a serverless function, if
+// revalidation is enabled and a new request comes in
+export async function getStaticProps() {
+  const menu = await someAPICall()
+
+  return {
+    props: {
+      someData,
+    },
+    // Next.js will attempt to re-generate the page:
+    // - When a request comes in
+    // - At most once every 10 seconds
+    revalidate: 10, //60 * 60 * 24, // 24 hrs
+  }
+}
+
+export default SomePage
 ```
 
+### Then setup a fancy hook (optional)
+There is a generic context hook available called `useStaticPageContext` which returns our static props.
+
+For this example I created several helper functions to reduce the need to keep writing so much typescript.
+
+```tsx
+import { useStaticPageContext } from '../../context/static-page-context'
+
+type ExampleData {}
+
+interface SomePageStaticData {
+  exampleData: ExampleData
+}
+
+const useStaticSomePageData = (): DefaultContext<SomePageStaticData> => {
+  return useStaticPageContext<SomePageStaticData>()
+}
+
+export default useStaticSomePageData
 ```
 
+### Finally you can use the context
+`useStaticSomePageData` in this example returns value from the provider. So all props will be available
+```tsx
+import React from 'react'
+import useStaticSomePageData from './hooks'
+
+const AnyComponent: React.FC = () => {
+  const stuff = useStaticSomePageData()
+  return <div className="test">{JSON.stringify(stuff)}</div>
+}
+
+export default AnyComponent
+```
 ## TODO
 [ ] Add unit tests

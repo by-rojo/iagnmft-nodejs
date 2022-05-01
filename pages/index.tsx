@@ -3,7 +3,7 @@ import wpMenues from '../api-factory/wp/menus'
 import HomePage from '../components/home-page'
 import { StaticPageContext } from '../context/static-page-context'
 
-const Home: NextPage<{ menu: MenuData }> = ({ menu }) => {
+const Home: NextPage<HomePageStaticData> = ({ menu }) => {
   const staticPageData: DefaultContext<HomePageStaticData> = {
     menu,
   }
