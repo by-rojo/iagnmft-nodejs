@@ -19,7 +19,7 @@ const Home: NextPage<HomePageStaticData> = ({ menu }) => {
 // It may be called again, on a serverless function, if
 // revalidation is enabled and a new request comes in
 export async function getStaticProps() {
-  const menu = await wpMenues()
+  const menu = await wpMenues().catch(() => ({}))
 
   return {
     props: {
