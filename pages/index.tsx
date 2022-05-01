@@ -4,12 +4,8 @@ import HomePage from '../components/home-page'
 import { StaticPageContext } from '../context/static-page-context'
 
 const Home: NextPage<HomePageStaticData> = ({ menu }) => {
-  const staticPageData: DefaultContext<HomePageStaticData> = {
-    menu,
-  }
-
   return (
-    <StaticPageContext data={staticPageData}>
+    <StaticPageContext data={{ menu }}>
       <HomePage />
     </StaticPageContext>
   )
