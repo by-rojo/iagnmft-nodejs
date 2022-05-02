@@ -3,13 +3,8 @@
   "extends": ["stylelint-config-standard", "stylelint-config-prettier"],
   "plugins": ["stylelint-scss"],
   "rules": {
-    "selector-class-pattern": "[a-z]+",
-    "selector-pseudo-class-no-unknown": [
-      true,
-      {
-        "ignorePseudoClasses": ["global"]
-      }
-    ],
+    "selector-class-pattern": null,
+    "selector-pseudo-class-no-unknown": null,
     "at-rule-no-unknown": null
   },
   "syntax": "scss"
