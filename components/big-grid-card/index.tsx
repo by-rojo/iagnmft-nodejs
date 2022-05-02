@@ -1,9 +1,11 @@
 import cNames from 'classnames'
 import he from 'he'
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 import { DEFAULT_BLUR_URL } from '../../constants'
 import style from './style.module.scss'
+
 const CLASS_NAMES = [
   'pt-3',
   'px-3',
@@ -20,6 +22,8 @@ const BigGridCard: React.FC<BigGridCardProps> = ({
   classNames = [],
   className,
   images,
+  internalUrl,
+  externalUrl,
 }) => {
   return (
     <div
@@ -30,9 +34,18 @@ const BigGridCard: React.FC<BigGridCardProps> = ({
     >
       <div className="my-3 py-3">
         {title && (
-          <h2 className={cNames('display-5', style.title)}>
-            {he.decode(title)}
-          </h2>
+          <Link href={internalUrl ?? '#'} passHref>
+            <a
+              className={cNames('text-decoration-none', {
+                'text-dark': color === 'light',
+                'text-white': color === 'dark',
+              })}
+            >
+              <h2 className={cNames('display-5', style.title)}>
+                {he.decode(title)}
+              </h2>
+            </a>
+          </Link>
         )}
         {description && (
           <p className={cNames('lead', 'line-clamp-3 px-4')}>
@@ -40,29 +53,33 @@ const BigGridCard: React.FC<BigGridCardProps> = ({
           </p>
         )}
       </div>
-      <div
-        className={cNames(
-          'shadow-sm',
-          'position-relative',
-          'mx-auto',
-          'overflow-hidden',
-          style.bgCardInnerCard,
-          {
-            'bg-light': color === 'dark',
-            'bg-dark': color === 'light',
-          }
-        )}
-      >
-        <Image
-          alt={images?.[0].alt ?? 'Product Image'}
-          src={images?.[0].src ?? DEFAULT_BLUR_URL}
-          layout="fill"
-          objectFit="cover"
-          quality={100}
-          placeholder="blur"
-          blurDataURL={DEFAULT_BLUR_URL}
-        />
-      </div>
+      <Link href={externalUrl ?? '#'} passHref>
+        <a rel="noindex nofollow" href={externalUrl ?? '#'} target="__blank">
+          <div
+            className={cNames(
+              'shadow-sm',
+              'position-relative',
+              'mx-auto',
+              'overflow-hidden',
+              style.bgCardInnerCard,
+              {
+                'bg-light': color === 'dark',
+                'bg-dark': color === 'light',
+              }
+            )}
+          >
+            <Image
+              alt={images?.[0].alt ?? 'Product Image'}
+              src={images?.[0].src ?? DEFAULT_BLUR_URL}
+              layout="fill"
+              objectFit="cover"
+              quality={100}
+              placeholder="blur"
+              blurDataURL={DEFAULT_BLUR_URL}
+            />
+          </div>
+        </a>
+      </Link>
     </div>
   )
 }

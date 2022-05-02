@@ -2,6 +2,7 @@ import React from 'react'
 import BigGrid from '../../../big-grid'
 import BigGridCard from '../../../big-grid-card'
 import useStaticHomePageData from '../../hooks'
+const HOST_URL = process.env.NEXT_PUBLIC_HOST_URL
 
 const TopProductsSection = () => {
   const { topProducts } = useStaticHomePageData()
@@ -26,6 +27,8 @@ const TopProductsSection = () => {
               color={index % 2 === 0 ? 'light' : 'dark'}
               key={product.id}
               images={product.images}
+              externalUrl={product.external_url}
+              internalUrl={product.permalink.replace(HOST_URL || '', '')}
               title={product.name.replace(/<[^>]*>/g, '')}
               description={product.short_description.replace(/<[^>]*>/g, '')}
             />
