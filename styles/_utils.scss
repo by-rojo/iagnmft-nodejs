@@ -1,6 +1,8 @@
 .line-clamp {
     display: box;
-    display: box;
+    /* stylelint-disable */
+    display: -webkit-box;
+    /* stylelint-enable */
     -webkit-box-orient: vertical;
     overflow: hidden;
     -webkit-line-clamp: 1;
@@ -21,6 +23,6 @@
 
 .line-clamp-2 {
     @extend .line-clamp;
-
+    
     -webkit-line-clamp: 2;
 }
