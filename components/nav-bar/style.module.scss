@@ -1,7 +1,11 @@
 @import "../../styles/module-utils";
 
 .navBar {
+    position: sticky;
 
+    :global(.dropdown-menu) {
+        border: none;
+    }
     @include media-breakpoint-down(lg) {
         :global(.dropdown-toggle::after) {
             display: none

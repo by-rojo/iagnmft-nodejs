@@ -15,6 +15,8 @@ Amazon Reseller shop for iaintgotmoneyforthat.com with automated import scripts 
 1. Access to the Amazon Reseller API
 1. I deployed this on Vercel
 1. Anything but Windows
+1. WP Plugin `WP-REST-API V2 Menus` for the menu to populate
+1. `Woocomerce` WP Plugin and [REST API](https://woocommerce.github.io/woocommerce-rest-api-docs/#delete-a-refund)
 
 ## NextJS
 
