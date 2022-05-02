@@ -1,0 +1,10 @@
+@import "../../styles/module-utils";
+
+.navBar {
+
+    @include media-breakpoint-down(lg) {
+        :global(.dropdown-toggle::after) {
+            display: none
+        }
+    }
+}

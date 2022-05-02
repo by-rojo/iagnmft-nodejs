@@ -1,12 +1,16 @@
 import type { NextPage } from 'next'
 import wpMenues from '../api-factory/wp/menus'
 import HomePage from '../components/home-page'
+import NavBar from '../components/nav-bar'
 import { StaticPageContext } from '../context/static-page-context'
 
 const Home: NextPage<HomePageStaticData> = ({ menu }) => {
   return (
     <StaticPageContext data={{ menu }}>
-      <HomePage />
+      <>
+        <NavBar />
+        <HomePage />
+      </>
     </StaticPageContext>
   )
 }
@@ -19,7 +23,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      menu: menu.message ? [] : menu,
+      menu: menu.message ? { data: [], message: menu.message } : { data: menu },
     },
     // Next.js will attempt to re-generate the page:
     // - When a request comes in
