@@ -54,7 +54,11 @@ const BigGridCard: React.FC<BigGridCardProps> = ({
         )}
       </div>
       <Link href={externalUrl ?? '#'} passHref>
-        <a rel="noindex nofollow" href={externalUrl ?? '#'} target="__blank">
+        <a
+          rel="noindex nofollow noreferrer"
+          href={externalUrl ?? '#'}
+          target="_blank"
+        >
           <div
             className={cNames(
               'shadow-sm',
