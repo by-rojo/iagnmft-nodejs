@@ -1,16 +1,16 @@
 import type { NextPage } from 'next'
 import wpMenues from '../api-factory/wp/menus'
 import HomePage from '../components/home-page'
+import NavBar from '../components/nav-bar'
 import { StaticPageContext } from '../context/static-page-context'
 
 const Home: NextPage<HomePageStaticData> = ({ menu }) => {
-  const staticPageData: DefaultContext<HomePageStaticData> = {
-    menu,
-  }
-
   return (
-    <StaticPageContext data={staticPageData}>
-      <HomePage />
+    <StaticPageContext data={{ menu }}>
+      <>
+        <NavBar />
+        <HomePage />
+      </>
     </StaticPageContext>
   )
 }
@@ -19,16 +19,16 @@ const Home: NextPage<HomePageStaticData> = ({ menu }) => {
 // It may be called again, on a serverless function, if
 // revalidation is enabled and a new request comes in
 export async function getStaticProps() {
-  const menu = await wpMenues().catch(() => ({}))
+  const menu = await wpMenues()
 
   return {
     props: {
-      menu,
+      menu: menu.message ? { data: [], message: menu.message } : { data: menu },
     },
     // Next.js will attempt to re-generate the page:
     // - When a request comes in
     // - At most once every 10 seconds
-    revalidate: 10, //60 * 60 * 24, // 24 hrs
+    revalidate: parseInt(`${process.env.HOME_PAGE_CACHE_SECONDS ?? 60}`, 10),
   }
 }
 
