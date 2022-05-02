@@ -54,7 +54,7 @@ interface Product {
   purchase_note: string
   categories: unknown
   tags: unknown[]
-  images: unknown[]
+  images: WPImage[]
   attributes: []
   default_attributes: unknown[]
   variations: unknown[]

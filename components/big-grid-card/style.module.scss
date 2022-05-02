@@ -5,7 +5,8 @@
 }
 
 .title {
-    height: 115px;
+    height: calc(1.2em * 3);
+    max-lines: 3;
     overflow: hidden;
     word-break: keep-all;
     text-overflow: clip;

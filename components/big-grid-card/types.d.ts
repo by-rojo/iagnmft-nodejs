@@ -4,4 +4,5 @@ interface BigGridCardProps {
   description?: string
   classNames?: string[]
   className?: string
+  images?: WPImage[]
 }
