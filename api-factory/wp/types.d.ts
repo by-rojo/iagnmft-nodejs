@@ -8,3 +8,17 @@ interface WPImage {
   name: string
   src: tring
 }
+interface WPParams {
+  perPage?: number
+  page?: number
+  orderBy?:
+    | string
+    | 'date'
+    | 'id'
+    | 'include'
+    | 'title'
+    | 'slug'
+    | 'price'
+    | 'popularity'
+    | 'rating'
+}

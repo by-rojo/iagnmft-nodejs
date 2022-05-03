@@ -19,20 +19,7 @@ const getProducts = ({
   orderBy = 'date',
   page = 1,
   perPage = 10,
-}: {
-  perPage?: number
-  page?: number
-  orderBy?:
-    | string
-    | 'date'
-    | 'id'
-    | 'include'
-    | 'title'
-    | 'slug'
-    | 'price'
-    | 'popularity'
-    | 'rating'
-}): Promise<Product[]> => {
+}: WPParams): Promise<Product[]> => {
   return wp
     .products()
     .per_page(perPage)

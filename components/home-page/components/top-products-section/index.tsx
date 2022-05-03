@@ -22,7 +22,7 @@ const TopProductsSection = () => {
                 'd-flex',
                 'justify-content-between',
               ]}
-              color={index % 2 === 0 ? 'light' : 'dark'}
+              color={index % 2 === 0 ? 'dark' : 'light'}
               key={product.id}
               images={product.images}
               externalUrl={product.external_url}

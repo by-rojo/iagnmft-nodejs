@@ -3,6 +3,10 @@ import wpMenues from '../api-factory/wp/menus'
 import wpProducts from '../api-factory/wp/products'
 import HomePage from '../components/home-page'
 import NavBar from '../components/nav-bar'
+import {
+  DEFAULT_RECENT_PRODUCTS_PARAMS,
+  DEFAULT_TOP_PRODUCTS_PARAMS,
+} from '../constants'
 import { StaticPageContext } from '../context/static-page-context'
 
 const Home: NextPage<HomePageStaticData> = ({
@@ -25,11 +29,8 @@ const Home: NextPage<HomePageStaticData> = ({
 // revalidation is enabled and a new request comes in
 export async function getStaticProps() {
   const menu = await wpMenues()
-  const topProducts = await wpProducts({ perPage: 6 })
-  const recentlyAddedProducts = await wpProducts({
-    perPage: 51,
-    orderBy: 'date',
-  })
+  const topProducts = await wpProducts(DEFAULT_TOP_PRODUCTS_PARAMS)
+  const recentlyAddedProducts = await wpProducts(DEFAULT_RECENT_PRODUCTS_PARAMS)
   return {
     props: {
       menu: menu.message ? { data: [], message: menu.message } : { data: menu },
