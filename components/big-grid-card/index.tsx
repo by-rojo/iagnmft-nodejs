@@ -1,5 +1,4 @@
 import cNames from 'classnames'
-import he from 'he'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
@@ -41,16 +40,12 @@ const BigGridCard: React.FC<BigGridCardProps> = ({
                 'text-white': color === 'dark',
               })}
             >
-              <h2 className={cNames('display-5', style.title)}>
-                {he.decode(title)}
-              </h2>
+              <h2 className={cNames('display-5', style.title)}>{title}</h2>
             </a>
           </Link>
         )}
         {description && (
-          <p className={cNames('lead', 'line-clamp-3 px-4')}>
-            {he.decode(description)}
-          </p>
+          <p className={cNames('lead', 'line-clamp-3 px-4')}>{description}</p>
         )}
       </div>
       <Link href={externalUrl ?? '#'} passHref>

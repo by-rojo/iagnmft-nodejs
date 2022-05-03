@@ -1,0 +1,54 @@
+.line-clamp {
+    display: flex;
+    /* stylelint-disable */
+    display: -webkit-box;
+    /* stylelint-enable */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    -webkit-line-clamp: 1;
+    word-break: keep-all;
+    text-overflow: clip;
+    width: 100%;
+}
+
+.line-clamp-4 {
+    @extend .line-clamp;
+
+    -webkit-line-clamp: 4;
+}
+
+.line-clamp-3 {
+    @extend .line-clamp;
+
+    -webkit-line-clamp: 3;
+}
+
+.line-clamp-2 {
+    @extend .line-clamp;
+    
+    -webkit-line-clamp: 2;
+}
+
+// line cut is like clamp but with no elipsis!
+.line-cut {
+    width: 100%;
+    overflow: hidden;
+    word-break: keep-all;
+    text-overflow: clip;
+}
+
+h5 {
+    &.line-cut {
+        &.two-lines {
+            max-height: calc(#{$h5-font-size} * 2.6); //first digit in 2.6 is # of lines
+        }
+
+        &.three-lines {
+            max-height: calc(#{$h5-font-size} * 3.6); //first digit in 2.6 is # of lines
+        }
+        
+        &.four-lines {
+            max-height: calc(#{$h5-font-size} * 4.6); //first digit in 2.6 is # of lines
+        }
+    }
+}

@@ -2,15 +2,13 @@ import React from 'react'
 import BigGrid from '../../../big-grid'
 import BigGridCard from '../../../big-grid-card'
 import useStaticHomePageData from '../../hooks'
-const HOST_URL = process.env.NEXT_PUBLIC_HOST_URL
 
 const TopProductsSection = () => {
   const { topProducts } = useStaticHomePageData()
   return (
     <section>
       <div className="container-fluid px-5">
-        <h2 className="text-center mt-4 mb-2">Top Products</h2>
-        <hr className="w-75 mb-2 mx-auto" />
+        <h2 className="text-center my-5 pt-2">Top Products</h2>
       </div>
       <BigGrid>
         {topProducts?.map((product, index) => {
@@ -28,9 +26,9 @@ const TopProductsSection = () => {
               key={product.id}
               images={product.images}
               externalUrl={product.external_url}
-              internalUrl={product.permalink.replace(HOST_URL || '', '')}
-              title={product.name.replace(/<[^>]*>/g, '')}
-              description={product.short_description.replace(/<[^>]*>/g, '')}
+              internalUrl={product.permalink}
+              title={product.name}
+              description={product.short_description}
             />
           )
         })}

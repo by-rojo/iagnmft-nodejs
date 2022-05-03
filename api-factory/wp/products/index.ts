@@ -1,4 +1,8 @@
 import wpapi from 'wpapi'
+import {
+  cleanHtmlString,
+  permalinkToRelativePath,
+} from './../../../utils/index'
 const { WP_USER, WP_PASS, WP_URL } = process.env
 
 const wp = new wpapi({
@@ -34,8 +38,15 @@ const getProducts = ({
     .per_page(perPage)
     .page(page)
     .orderby(orderBy)
-    .then((data: any) => {
-      return data
+    .then((data: Product[]) => {
+      return data.map((product) => {
+        return {
+          ...product,
+          short_description: cleanHtmlString(product.short_description),
+          name: cleanHtmlString(product.name),
+          permalink: permalinkToRelativePath(product.permalink),
+        }
+      })
     })
     .catch((e: Error) => {
       console.error(e)
