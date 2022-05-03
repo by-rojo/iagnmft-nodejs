@@ -16,7 +16,6 @@ const getPosts = (): Promise<PostData & Error> => {
   return wp
     .posts()
     .then((data) => {
-      console.log(data)
       return data
     })
     .catch((e: Error) => {

@@ -1,10 +1,22 @@
-# iagnmft-nodejs
+# iagmft-nodejs
 
 Node JS affiliate SPA built with NextJS and React
 
 ##
 
-Amazon Reseller shop for iaintgotnomoneyforthat.com with automated import scripts using the Amazon Reselllers API.
+Amazon Reseller shop for iaintgotmoneyforthat.com with automated import scripts using the Amazon Reselllers API and Wordpress as a headless CMS.
+
+
+## Requirements
+
+1. Node version in the `.nvmrc` file is always recommended
+1. Built with `npm` never tested with `yarn` but it *should* work fine
+1. Wordpress server on `https`
+1. Access to the Amazon Reseller API
+1. I deployed this on Vercel
+1. Anything but Windows
+1. WP Plugin `WP-REST-API V2 Menus` for the menu to populate
+1. `Woocomerce` WP Plugin and [REST API](https://woocommerce.github.io/woocommerce-rest-api-docs/#delete-a-refund)
 
 ## NextJS
 
@@ -123,5 +135,6 @@ const AnyComponent: React.FC = () => {
 
 export default AnyComponent
 ```
+
 ## TODO
 [ ] Add unit tests

@@ -1,0 +1,13 @@
+.bgCardInnerCard {
+    width: 80%;
+    height: 300px;
+    border-radius: 21px 21px 0 0;
+}
+
+.title {
+    height: calc(1.2em * 3);
+    max-lines: 3;
+    overflow: hidden;
+    word-break: keep-all;
+    text-overflow: clip;
+}

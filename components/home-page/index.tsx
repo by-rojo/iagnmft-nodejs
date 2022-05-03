@@ -1,10 +1,16 @@
 import React from 'react'
-import useStaticHomePageData from './hooks'
+import Hero from '../hero'
+import RecentlyAddedSection from './components/recently-added-section'
+import TopProductsSection from './components/top-products-section'
 
 const HomePage: React.FC = () => {
-  const { menu } = useStaticHomePageData()
-
-  return <div className="test"></div>
+  return (
+    <>
+      <Hero />
+      <TopProductsSection />
+      <RecentlyAddedSection />
+    </>
+  )
 }
 
 export default HomePage

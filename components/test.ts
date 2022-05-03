@@ -3,3 +3,5 @@ describe('Test', () => {
     expect('test').toBe('test')
   })
 })
+
+export default {}

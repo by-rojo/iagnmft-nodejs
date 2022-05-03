@@ -1,6 +1,7 @@
 import cNames from 'classnames'
 import Link from 'next/link'
 import React, { useState } from 'react'
+import { NAV_BREAKPOINT } from '../../constants'
 import useStaticHomePageData from '../home-page/hooks'
 import styles from './style.module.scss'
 
@@ -9,11 +10,11 @@ const NavBar: React.FC = () => {
   const [hoveredMenuItemID, setHoveredMenuItemID] = useState(-1)
   const [toggled, setToggled] = useState(false)
   const onOpenDropdown = (ID: number) => {
-    if (window.innerWidth > 991) setHoveredMenuItemID(ID)
+    if (window.innerWidth > NAV_BREAKPOINT) setHoveredMenuItemID(ID)
   }
 
   const onCloseDropdown = () => {
-    if (window.innerWidth > 991) setHoveredMenuItemID(-1)
+    if (window.innerWidth > NAV_BREAKPOINT) setHoveredMenuItemID(-1)
   }
 
   const getDropdownProps = (ID: number) => {
@@ -27,7 +28,7 @@ const NavBar: React.FC = () => {
   return (
     <nav
       className={cNames(
-        'navbar sticky-top navbar-dark bg-dark navbar-expand-lg',
+        'navbar sticky-top navbar-light bg-light navbar-expand-lg',
         styles.navBar
       )}
     >
@@ -74,7 +75,7 @@ const NavBar: React.FC = () => {
                     {isDropdown && (
                       <div
                         {...getDropdownProps(menuItem.ID)}
-                        className={cNames('bg-dark', {
+                        className={cNames({
                           'dropdown-menu': isDropdown,
                           show: menuItem.ID === hoveredMenuItemID,
                         })}
@@ -88,7 +89,7 @@ const NavBar: React.FC = () => {
                             >
                               <a
                                 tabIndex={0}
-                                className="nav-link dropdown-item bg-dark"
+                                className="nav-link dropdown-item"
                                 onClick={() => onCloseDropdown()}
                                 onFocus={() => onOpenDropdown(menuItem.ID)}
                               >
