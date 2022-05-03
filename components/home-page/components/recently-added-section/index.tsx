@@ -1,5 +1,4 @@
 import classNames from 'classnames'
-import dayjs from 'dayjs'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
@@ -60,17 +59,45 @@ const RecentlyAddedSection: React.FC = () => {
                         target="_blank"
                         rel="noindex nofollow"
                       >
-                        <p className="card-text line-clamp-3">
-                          {product.short_description}
+                        <p className="card-text line-clamp-3 lh-sm">
+                          <small>{product.short_description}</small>
                         </p>
                       </a>
                     </Link>
                   </div>
-                  <div className="card-footer">
-                    <small className="text-muted">
-                      Added:{' '}
-                      {dayjs(product.date_created).format('M/D/YYYY @ h:mma')}
-                    </small>
+                  <div className="card justify-content-between flex-row p-2 align-items-center">
+                    <div>
+                      <div>
+                        Reg:{' '}
+                        <span
+                          className={classNames({
+                            'text-decoration-line-through': product.sale_price,
+                            'fst-italic': product.sale_price,
+                            'text-success': !product.sale_price,
+                          })}
+                        >
+                          ${parseFloat(product.regular_price).toFixed(2)}
+                        </span>
+                      </div>
+                      {product.sale_price && (
+                        <div className="fw-bold">
+                          Sale:{' '}
+                          <span className="text-success">
+                            ${parseFloat(product.sale_price).toFixed(2)}
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                    <div>
+                      <Link href={product.external_url} passHref>
+                        <a
+                          className="btn btn-outline-primary"
+                          rel="nofollow noindex"
+                        >
+                          Check it out
+                        </a>
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </div>
