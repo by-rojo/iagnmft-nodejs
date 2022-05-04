@@ -5,3 +5,18 @@ export const DEFAULT_RECENT_PRODUCTS_PARAMS = {
   orderBy: 'date',
 }
 export const DEFAULT_TOP_PRODUCTS_PARAMS = { perPage: 3, orderBy: 'popularity' }
+export const SCROLL_LOADER_THRESHOLD = 1000
+export const COMPANY_NAME = process.env.COMPANY_NAME ?? 'IAGMFT'
+
+export const FACEBOOK_PROFILE_URL =
+  process.env.NEXT_PUBLIC_FACEBOOK_PROFILE_URL ?? '#'
+export const TWITTER_PROFILE_URL =
+  process.env.NEXT_PUBLIC_TWITTER_PROFILE_URL ?? '#'
+export const INSTAGRAM_PROFILE_URL =
+  process.env.NEXT_PUBLIC_INSTAGRAM_PROFILE_URL ?? '#'
+export const TIKTOK_PROFILE_URL =
+  process.env.NEXT_PUBLIC_TIKTOK_PROFILE_URL ?? '#'
+export const PINTEREST_PROFILE_URL =
+  process.env.NEXT_PUBLIC_PINTEREST_PROFILE_URL ?? '#'
+export const YOUTUBE_PROFILE_URL =
+  process.env.NEXT_PUBLIC_YOUTUBE_PROFILE_URL ?? '#'

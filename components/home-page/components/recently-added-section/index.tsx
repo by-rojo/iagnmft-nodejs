@@ -7,6 +7,7 @@ import { getProductsPublicAPI } from '../../../../api-factory/api/client/product
 import {
   DEFAULT_BLUR_URL,
   DEFAULT_RECENT_PRODUCTS_PARAMS,
+  SCROLL_LOADER_THRESHOLD,
 } from '../../../../constants'
 import useStaticHomePageData from '../../hooks'
 import style from './style.module.scss'
@@ -23,6 +24,7 @@ const RecentlyAddedSection: React.FC = () => {
       <div className="container">
         <InfiniteScroll
           pageStart={1}
+          threshold={SCROLL_LOADER_THRESHOLD}
           loadMore={(page) =>
             getProductsPublicAPI({
               ...DEFAULT_RECENT_PRODUCTS_PARAMS,
