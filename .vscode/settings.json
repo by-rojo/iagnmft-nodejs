@@ -1,11 +1,12 @@
 {
   "eslint.alwaysShowStatus": true,
   "eslint.enable": true,
+  "editor.tabSize": 2,
   "prettier.enable": false,
   "standard.enable": false,
   "editor.codeActionsOnSave": {
     "source.fixAll": true,
-    "source.organizeImports": true
+    "source.organizeImports": false
   },
   "files.autoSave": "afterDelay",
   "editor.defaultFormatter": "dbaeumer.vscode-eslint",
