@@ -136,5 +136,51 @@ const AnyComponent: React.FC = () => {
 export default AnyComponent
 ```
 
+## VS Code
+You will need these plugins at some point! If you need to install the code function type `command + p` then `>shell` and select install `code command`
+
+You can also install them 1 by one by copying the extension name and putting it in the search under the plugins tab in vscode.
+
+```
+code --install-extension agauniyal.vscode-caniuse
+code --install-extension akamud.vscode-caniuse
+code --install-extension anseki.vscode-color
+code --install-extension asciidoctor.asciidoctor-vscode
+code --install-extension asvetliakov.snapshot-tools
+code --install-extension chenxsan.vscode-standardjs
+code --install-extension christian-kohler.npm-intellisense
+code --install-extension christian-kohler.path-intellisense
+code --install-extension dbaeumer.vscode-eslint
+code --install-extension dzannotti.vscode-babel-coloring
+code --install-extension eamodio.gitlens
+code --install-extension ecmel.vscode-html-css
+code --install-extension eg2.vscode-npm-script
+code --install-extension esbenp.prettier-vscode
+code --install-extension GitHub.vscode-pull-request-github
+code --install-extension glen-84.sass-lint
+code --install-extension henrynguyen5-vsc.vsc-nvm
+code --install-extension jeff-hykin.better-cpp-syntax
+code --install-extension jeremyrajan.file-script-runner
+code --install-extension jeremyrajan.webpack
+code --install-extension johnpapa.vscode-peacock
+code --install-extension leizongmin.node-module-intellisense
+code --install-extension mgmcdermott.vscode-language-babel
+code --install-extension mohsen1.prettify-json
+code --install-extension mrmlnc.vscode-scss
+code --install-extension Orta.vscode-jest
+code --install-extension q.typescript-mono-repo-import-helper
+code --install-extension samuelroy.vscode-styled-jsx-stylus
+code --install-extension shd101wyy.markdown-preview-enhanced
+code --install-extension sibiraj-s.vscode-scss-formatter
+code --install-extension steoates.autoimport
+code --install-extension stylelint.vscode-stylelint
+code --install-extension syler.sass-indented
+code --install-extension VisualStudioExptTeam.vscodeintellicode
+code --install-extension vscode-icons-team.vscode-icons
+code --install-extension wk-j.webpack-progress
+code --install-extension Zignd.html-css-class-completion
+```
+
+
 ## TODO
 [ ] Add unit tests
