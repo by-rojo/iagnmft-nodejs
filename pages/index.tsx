@@ -1,24 +1,29 @@
 import type { NextPage } from 'next'
 import wpMenues from '../api-factory/wp/menus'
 import wpProducts from '../api-factory/wp/products'
+import wpProductsCategories from '../api-factory/wp/products/categories'
+import Footer from '../components/footer'
 import HomePage from '../components/home-page'
 import NavBar from '../components/nav-bar'
 import {
+  DEFAULT_PRODUCT_CATEGORY_PARAMS,
   DEFAULT_RECENT_PRODUCTS_PARAMS,
-  DEFAULT_TOP_PRODUCTS_PARAMS,
 } from '../constants'
 import { StaticPageContext } from '../context/static-page-context'
 
 const Home: NextPage<HomePageStaticData> = ({
   menu,
-  topProducts,
   recentlyAddedProducts,
+  productCategories,
 }) => {
   return (
-    <StaticPageContext data={{ menu, topProducts, recentlyAddedProducts }}>
+    <StaticPageContext
+      data={{ menu, recentlyAddedProducts, productCategories }}
+    >
       <>
         <NavBar />
         <HomePage />
+        <Footer />
       </>
     </StaticPageContext>
   )
@@ -29,13 +34,15 @@ const Home: NextPage<HomePageStaticData> = ({
 // revalidation is enabled and a new request comes in
 export async function getStaticProps() {
   const menu = await wpMenues()
-  const topProducts = await wpProducts(DEFAULT_TOP_PRODUCTS_PARAMS)
   const recentlyAddedProducts = await wpProducts(DEFAULT_RECENT_PRODUCTS_PARAMS)
+  const productCategories = await wpProductsCategories(
+    DEFAULT_PRODUCT_CATEGORY_PARAMS
+  )
   return {
     props: {
       menu: menu.message ? { data: [], message: menu.message } : { data: menu },
-      topProducts,
       recentlyAddedProducts,
+      productCategories,
     },
     // Next.js will attempt to re-generate the page:
     // - When a request comes in

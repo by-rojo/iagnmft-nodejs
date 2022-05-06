@@ -1,16 +1,15 @@
 import React from 'react'
-import Footer from '../footer'
 import Hero from '../hero'
 import RecentlyAddedSection from './components/recently-added-section'
-import TopProductsSection from './components/top-products-section'
+import CategoryGrid from './components/category-grid'
 
 const HomePage: React.FC = () => {
   return (
     <>
-      <Hero />
-      <TopProductsSection />
+      <Hero>
+        <CategoryGrid />
+      </Hero>
       <RecentlyAddedSection />
-      <Footer />
     </>
   )
 }
