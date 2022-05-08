@@ -1,13 +1,13 @@
 import React from 'react'
 import Hero from '../hero'
 import RecentlyAddedSection from './components/recently-added-section'
-import CategoryGrid from './components/category-grid'
+import FancyCategoryGrid from './components/fancy-category-grid'
 
 const HomePage: React.FC = () => {
   return (
     <>
       <Hero>
-        <CategoryGrid />
+        <FancyCategoryGrid />
       </Hero>
       <RecentlyAddedSection />
     </>
