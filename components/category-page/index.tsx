@@ -1,10 +1,12 @@
 import React from 'react'
 import ProductList from './components/products-list'
-
+import { ProductListContext } from './context'
 const CategoryPage: React.FC = () => {
   return (
     <div>
-      <ProductList />
+      <ProductListContext>
+        <ProductList />
+      </ProductListContext>
     </div>
   )
 }

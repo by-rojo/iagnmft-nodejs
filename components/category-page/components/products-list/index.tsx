@@ -1,47 +1,34 @@
 import classNames from 'classnames'
 import Image from 'next/image'
 import Link from 'next/link'
-import React, { useState } from 'react'
+import React, { useContext } from 'react'
 import InfiniteScroll from 'react-infinite-scroller'
-import { getProductsPublicAPI } from '../../../../api-factory/api/client/products'
 import {
   DEFAULT_BLUR_URL,
-  DEFAULT_CATEGORY_PARAMS,
   SCROLL_LOADER_THRESHOLD,
 } from '../../../../constants'
+import ProductFilters from '../product-filters'
 import useStaticCategoryPageData from '../../hooks'
 import style from './style.module.scss'
+import context from '../../context'
 
-const RecentlyAddedSection: React.FC = () => {
-  const { products, category } = useStaticCategoryPageData()
-  const [rows, setRows] = useState(products || [])
+const ProductsList: React.FC = () => {
+  const { items, dispatch, pageStart } = useContext(context)
+  const { category } = useStaticCategoryPageData()
 
-  return (
+  return dispatch && pageStart ? (
     <section className="mt-5">
       <div className="container">
         <h2 className="my-5 pt-3 mb-0">{category?.name} Category</h2>
         <hr className="mb-4" />
       </div>
-      <div className="container">
-        <InfiniteScroll
-          pageStart={1}
-          threshold={SCROLL_LOADER_THRESHOLD}
-          loadMore={(page) =>
-            getProductsPublicAPI({
-              ...DEFAULT_CATEGORY_PARAMS,
-              page,
-              category: category?.id,
-            }).then((response) => {
-              if (response && response.length > 0) {
-                const newRows = [...rows]
 
-                response.forEach((item) => {
-                  newRows.push(item)
-                })
-                setRows(newRows)
-              }
-            })
-          }
+      <div className="container">
+        <ProductFilters />
+        <InfiniteScroll
+          pageStart={pageStart - 1}
+          threshold={SCROLL_LOADER_THRESHOLD}
+          loadMore={() => dispatch.loadProducts(pageStart + 1)}
           hasMore
           loader={
             <div
@@ -55,7 +42,7 @@ const RecentlyAddedSection: React.FC = () => {
           }
         >
           <div className="row row-cols-1 row-cols-md-3 g-4">
-            {rows?.map((product) => {
+            {items?.map((product) => {
               return (
                 <div className="col" key={product.id}>
                   <div className="card position-relative h-100">
@@ -147,7 +134,7 @@ const RecentlyAddedSection: React.FC = () => {
         </InfiniteScroll>
       </div>
     </section>
-  )
+  ) : null
 }
 
-export default RecentlyAddedSection
+export default ProductsList

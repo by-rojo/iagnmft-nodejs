@@ -16,6 +16,7 @@ const getProductsCategories = ({
   page = 1,
   perPage = 10,
   slug = '',
+  order = 'desc',
 }: WPParams): Promise<ProductCategory[]> => {
   return wp
     .categories()
@@ -23,7 +24,7 @@ const getProductsCategories = ({
     .per_page(perPage)
     .page(page)
     .orderby(orderBy)
-    .order('desc')
+    .order(order)
     .then((data: ProductCategory[]) => {
       return data.map((product) => {
         return { ...product, name: cleanHtmlString(product.name ?? '') }
