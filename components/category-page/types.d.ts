@@ -16,8 +16,8 @@ interface ProductListContext {
   items?: Product[]
   pageStart?: number = 1
   filters?: {
-    orderBy: string
-    maxPrice: number
-    minPrice: number
+    orderBy?: string
+    maxPrice?: number
+    minPrice?: number
   }
 }
