@@ -11,6 +11,8 @@ interface WPImage {
 interface WPParams {
   perPage?: number
   page?: number
+  slug?: string
+  category?: number
   orderBy?:
     | string
     | 'date'

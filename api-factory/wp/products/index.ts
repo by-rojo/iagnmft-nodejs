@@ -12,16 +12,18 @@ const wp = new wpapi({
 })
 
 wp.products = wp.registerRoute('wc/v3', '/products/(?P<id>\\d+)', {
-  params: ['sku', 'id', 'orderby', 'page', 'per_page'],
+  params: ['sku', 'id', 'orderby', 'page', 'per_page', 'category', 'slug'],
 })
 
 const getProducts = ({
   orderBy = 'date',
   page = 1,
   perPage = 10,
+  category,
 }: WPParams): Promise<Product[]> => {
   return wp
     .products()
+    .category(category)
     .per_page(perPage)
     .page(page)
     .orderby(orderBy)

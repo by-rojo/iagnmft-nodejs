@@ -13,7 +13,7 @@ const FancyCategoryGrid: React.FC = () => {
         {productCategories?.map(({ name, id, image, slug }, i) => {
           return (
             <div key={id} className="col-12 col-sm-6 col-md-3 mb-4">
-              <Link passHref href={`/product-category/${slug}`}>
+              <Link passHref href={`/category/${slug}`}>
                 <a
                   className={classNames(
                     'position-relative w-100 d-flex h-100',

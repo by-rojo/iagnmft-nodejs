@@ -8,16 +8,18 @@ const wp = new wpapi({
 })
 
 wp.categories = wp.registerRoute('wc/v3/products', '/categories', {
-  params: ['orderby', 'page', 'per_page'],
+  params: ['orderby', 'page', 'per_page', 'slug'],
 })
 
 const getProductsCategories = ({
   orderBy = 'id',
   page = 1,
   perPage = 10,
+  slug = '',
 }: WPParams): Promise<ProductCategory[]> => {
   return wp
     .categories()
+    .slug(slug)
     .per_page(perPage)
     .page(page)
     .orderby(orderBy)
