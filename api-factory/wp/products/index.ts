@@ -12,19 +12,37 @@ const wp = new wpapi({
 })
 
 wp.products = wp.registerRoute('wc/v3', '/products/(?P<id>\\d+)', {
-  params: ['sku', 'id', 'orderby', 'page', 'per_page'],
+  params: [
+    'sku',
+    'id',
+    'orderby',
+    'page',
+    'per_page',
+    'category',
+    'slug',
+    'max_price',
+    'min_price',
+  ],
 })
 
 const getProducts = ({
   orderBy = 'date',
   page = 1,
   perPage = 10,
+  category,
+  maxPrice,
+  minPrice,
+  order = 'desc',
 }: WPParams): Promise<Product[]> => {
   return wp
     .products()
+    .category(category)
+    .max_price(maxPrice)
+    .min_price(minPrice)
     .per_page(perPage)
     .page(page)
     .orderby(orderBy)
+    .order(order)
     .then((data: Product[]) => {
       return data.map((product) => {
         return {

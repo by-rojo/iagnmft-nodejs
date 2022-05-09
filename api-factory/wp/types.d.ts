@@ -9,8 +9,13 @@ interface WPImage {
   src: tring
 }
 interface WPParams {
+  order?: 'desc' | 'asc' | string
   perPage?: number
   page?: number
+  slug?: string
+  category?: number
+  maxPrice?: number
+  minPrice?: number
   orderBy?:
     | string
     | 'date'

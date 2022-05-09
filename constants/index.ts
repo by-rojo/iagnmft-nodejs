@@ -6,6 +6,12 @@ export const DEFAULT_RECENT_PRODUCTS_PARAMS = {
   perPage: 18,
   orderBy: 'date',
 }
+
+export const DEFAULT_CATEGORY_PARAMS = {
+  perPage: 18,
+  orderBy: 'date',
+}
+
 export const DEFAULT_PRODUCT_CATEGORY_PARAMS = {
   perPage: 8,
   orderBy: 'count',
