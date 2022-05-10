@@ -1,10 +1,4 @@
-import React, {
-  createContext,
-  useCallback,
-  useState,
-  useRef,
-  MutableRefObject,
-} from 'react'
+import React, { createContext, useCallback, useState, useRef } from 'react'
 import { getProductsPublicAPI } from '../../api-factory/api/client/products'
 import { DEFAULT_CATEGORY_PARAMS } from '../../constants'
 import useStaticCategoryPageData from './hooks'

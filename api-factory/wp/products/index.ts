@@ -37,8 +37,8 @@ const getProducts = ({
   return wp
     .products()
     .category(category)
-    .max_price(maxPrice)
-    .min_price(minPrice)
+    .max_price(maxPrice === 0 ? undefined : maxPrice)
+    .min_price(minPrice === 0 ? undefined : minPrice)
     .per_page(perPage)
     .page(page)
     .orderby(orderBy)
