@@ -2,6 +2,7 @@ interface CategoryPageStaticData {
   menu: MenuData
   products: Product[]
   category: ProductCategory
+  childCategories: ProductCategory[]
 }
 
 interface ProductListContextProps {
@@ -15,8 +16,10 @@ interface ProductListContext {
   }
   items?: Product[]
   pageStart?: number = 1
+  hasMore?: boolean = true
   filters?: {
     orderBy?: string
+    category?: number
     maxPrice?: number
     minPrice?: number
   }

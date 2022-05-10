@@ -54,7 +54,7 @@ const getProducts = ({
       })
     })
     .catch((e: Error) => {
-      console.error(e)
+      console.error(e, 'is ', orderBy)
       return []
     })
 }
