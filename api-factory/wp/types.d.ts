@@ -16,6 +16,7 @@ interface WPParams {
   category?: number
   maxPrice?: number
   minPrice?: number
+  parent?: number
   orderBy?:
     | string
     | 'date'

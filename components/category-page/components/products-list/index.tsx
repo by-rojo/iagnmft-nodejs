@@ -5,6 +5,7 @@ import React, { useContext } from 'react'
 import InfiniteScroll from 'react-infinite-scroller'
 import {
   DEFAULT_BLUR_URL,
+  DEFAULT_CATEGORY_PARAMS,
   SCROLL_LOADER_THRESHOLD,
 } from '../../../../constants'
 import ProductFilters from '../product-filters'
@@ -13,7 +14,7 @@ import style from './style.module.scss'
 import context from '../../context'
 
 const ProductsList: React.FC = () => {
-  const { items, dispatch, pageStart } = useContext(context)
+  const { items, dispatch, pageStart, filters, hasMore } = useContext(context)
   const { category } = useStaticCategoryPageData()
 
   return dispatch && pageStart ? (
@@ -28,8 +29,8 @@ const ProductsList: React.FC = () => {
         <InfiniteScroll
           pageStart={pageStart - 1}
           threshold={SCROLL_LOADER_THRESHOLD}
-          loadMore={() => dispatch.loadProducts(pageStart + 1)}
-          hasMore
+          loadMore={() => dispatch.loadProducts(pageStart + 1, filters)}
+          hasMore={hasMore}
           loader={
             <div
               className="loader d-flex justify-content-center align-items-center p-5"
@@ -42,9 +43,9 @@ const ProductsList: React.FC = () => {
           }
         >
           <div className="row row-cols-1 row-cols-md-3 g-4">
-            {items?.map((product) => {
+            {items?.map((product, index) => {
               return (
-                <div className="col" key={product.id}>
+                <div className="col" key={`${product.id}-${index}`}>
                   <div className="card position-relative h-100">
                     <Link passHref href={product.external_url}>
                       <a

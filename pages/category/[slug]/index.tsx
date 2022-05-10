@@ -6,6 +6,7 @@ import Footer from '../../../components/footer'
 import Page from '../../../components/category-page'
 import NavBar from '../../../components/nav-bar'
 import {
+  DEFAULT_CATEGORY_PARAMS,
   DEFAULT_PRODUCT_CATEGORY_PARAMS,
   DEFAULT_RECENT_PRODUCTS_PARAMS,
 } from '../../../constants'
@@ -15,9 +16,10 @@ const CategoryPage: NextPage<CategoryPageStaticData> = ({
   menu,
   products,
   category,
+  childCategories,
 }) => {
   return (
-    <StaticPageContext data={{ menu, products, category }}>
+    <StaticPageContext data={{ menu, products, category, childCategories }}>
       <>
         <NavBar />
         <Page />
@@ -31,7 +33,7 @@ const CategoryPage: NextPage<CategoryPageStaticData> = ({
 export async function getStaticPaths() {
   const productCategories = await wpProductsCategories({
     ...DEFAULT_PRODUCT_CATEGORY_PARAMS,
-    perPage: 100,
+    perPage: 8,
   })
 
   const paths = productCategories.map((item) => ({
@@ -53,6 +55,12 @@ export async function getStaticProps({ params }: { params: { slug: string } }) {
     slug: params.slug,
   })
 
+  const childCategories = await wpProductsCategories({
+    ...DEFAULT_PRODUCT_CATEGORY_PARAMS,
+    perPage: 50,
+    parent: category.id,
+  })
+
   const products = await wpProducts({
     ...DEFAULT_RECENT_PRODUCTS_PARAMS,
     category: category.id,
@@ -63,6 +71,11 @@ export async function getStaticProps({ params }: { params: { slug: string } }) {
       menu: menu.message ? { data: [], message: menu.message } : { data: menu },
       products,
       category,
+      childCategories: childCategories.map((childCategory) => ({
+        id: childCategory.id,
+        slug: childCategory.slug,
+        name: childCategory.name,
+      })),
     },
     // Next.js will attempt to re-generate the page:
     // - When a request comes in

@@ -11,6 +11,7 @@ const nextAPIProducts = (
     orderBy: `${req.query.orderBy || 'date'}`,
     order: `${req.query.order || 'desc'}`,
   }
+
   if (req.query.maxPrice) {
     params.maxPrice = parseFloat(`${req.query.maxPrice}`)
   }

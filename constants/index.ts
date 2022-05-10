@@ -9,7 +9,7 @@ export const DEFAULT_RECENT_PRODUCTS_PARAMS = {
 
 export const DEFAULT_CATEGORY_PARAMS = {
   perPage: 18,
-  orderBy: 'date',
+  orderBy: 'title',
 }
 
 export const DEFAULT_PRODUCT_CATEGORY_PARAMS = {
