@@ -11,6 +11,8 @@ import {
   DEFAULT_RECENT_PRODUCTS_PARAMS,
 } from '../../../constants'
 import { StaticPageContext } from '../../../context/static-page-context'
+import Head from 'next/head'
+import AppHead from '../../../components/app-head'
 
 const CategoryPage: NextPage<CategoryPageStaticData> = ({
   menu,
@@ -21,6 +23,10 @@ const CategoryPage: NextPage<CategoryPageStaticData> = ({
   return (
     <StaticPageContext data={{ menu, products, category, childCategories }}>
       <>
+        <AppHead
+          title={`${category.name} Products`}
+          description={category.description}
+        />
         <NavBar />
         <Page />
         <Footer />
