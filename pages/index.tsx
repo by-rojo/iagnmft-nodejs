@@ -1,7 +1,9 @@
 import type { NextPage } from 'next'
+import Head from 'next/head'
 import wpMenues from '../api-factory/wp/menus'
 import wpProducts from '../api-factory/wp/products'
 import wpProductsCategories from '../api-factory/wp/products/categories'
+import AppHead from '../components/app-head'
 import Footer from '../components/footer'
 import HomePage from '../components/home-page'
 import NavBar from '../components/nav-bar'
@@ -21,6 +23,10 @@ const Home: NextPage<HomePageStaticData> = ({
       data={{ menu, recentlyAddedProducts, productCategories }}
     >
       <>
+        <AppHead
+          title={process.env.NEXT_PUBLIC_SITE_NAME}
+          description={process.env.NEXT_PUBLIC_SITE_DESCRIPTION}
+        />
         <NavBar />
         <HomePage />
         <Footer />

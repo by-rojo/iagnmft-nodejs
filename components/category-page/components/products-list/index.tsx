@@ -49,6 +49,16 @@ const ProductsList: React.FC = () => {
                   <div className="card position-relative h-100">
                     <Link passHref href={product.external_url}>
                       <a
+                        onClick={() => {
+                          window.gtag('event', 'generate_lead', {
+                            name: product.name,
+                            id: product.id,
+                            slug: product.slug,
+                            external_url: product.external_url,
+                            sale_price: product.sale_price,
+                            regular_price: product.regular_price,
+                          })
+                        }}
                         className="text-black text-decoration-none"
                         target="_blank"
                         rel="nofollow noindex"
@@ -74,7 +84,19 @@ const ProductsList: React.FC = () => {
                     </Link>
                     <div className="card-body">
                       <Link passHref href={product.permalink}>
-                        <a className="text-black text-decoration-none">
+                        <a
+                          className="text-black text-decoration-none"
+                          onClick={() => {
+                            window.gtag('event', 'view_item', {
+                              name: product.name,
+                              id: product.id,
+                              slug: product.slug,
+                              external_url: product.external_url,
+                              sale_price: product.sale_price,
+                              regular_price: product.regular_price,
+                            })
+                          }}
+                        >
                           <h5 className="card-title line-cut two-lines">
                             {product.name}
                           </h5>
@@ -82,6 +104,16 @@ const ProductsList: React.FC = () => {
                       </Link>
                       <Link passHref href={product.external_url}>
                         <a
+                          onClick={() => {
+                            window.gtag('event', 'generate_lead', {
+                              name: product.name,
+                              id: product.id,
+                              slug: product.slug,
+                              external_url: product.external_url,
+                              sale_price: product.sale_price,
+                              regular_price: product.regular_price,
+                            })
+                          }}
                           className="text-black text-decoration-none"
                           target="_blank"
                           rel="noindex nofollow"
@@ -119,6 +151,17 @@ const ProductsList: React.FC = () => {
                       <div>
                         <Link href={product.external_url} passHref>
                           <a
+                            onClick={() => {
+                              window.gtag('event', 'generate_lead', {
+                                name: product.name,
+                                id: product.id,
+                                slug: product.slug,
+                                external_url: product.external_url,
+                                sale_price: product.sale_price,
+                                regular_price: product.regular_price,
+                              })
+                            }}
+                            target="_blank"
                             className="btn btn-outline-primary"
                             rel="nofollow noindex"
                           >

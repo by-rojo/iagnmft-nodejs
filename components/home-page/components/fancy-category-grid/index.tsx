@@ -15,6 +15,13 @@ const FancyCategoryGrid: React.FC = () => {
             <div key={id} className="col-12 col-sm-6 col-md-3 mb-4">
               <Link passHref href={`/category/${slug}`}>
                 <a
+                  onClick={() => {
+                    window.gtag('event', 'category_hero_menu', {
+                      name,
+                      id,
+                      slug,
+                    })
+                  }}
                   className={classNames(
                     'position-relative w-100 d-flex h-100',
                     styles.categoryButton,
