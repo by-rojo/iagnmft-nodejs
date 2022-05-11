@@ -5,8 +5,8 @@ import { DEFAULT_BLUR_URL } from '../../constants'
 import style from './style.module.scss'
 import classNames from 'classnames'
 import Link from 'next/link'
+import RecentlyAddedSection from '../home-page/components/recently-added-section'
 
-// useStaticProductPageData
 const ProductPage: React.FC = () => {
   const { product } = useStaticProductPageData()
 
@@ -122,7 +122,26 @@ const ProductPage: React.FC = () => {
             {buyNowPanel}
           </div>
         </div>
+
+        <hr className="mt-5" />
       </div>
+
+      <RecentlyAddedSection
+        pageStart={0}
+        sectionTitle="Related products"
+        category={product?.categories[0].id}
+        exclude={[product?.id || 0]}
+        include={product?.related_ids}
+        orderBy="popularity"
+      />
+
+      <RecentlyAddedSection
+        pageStart={0}
+        sectionTitle={`Popular in ${product?.categories[0].name}`}
+        category={product?.categories[0].id}
+        exclude={[product?.id || 0]}
+        orderBy="popularity"
+      />
     </>
   )
 }

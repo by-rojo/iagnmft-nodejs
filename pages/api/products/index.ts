@@ -1,6 +1,13 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import getProducts from '../../../api-factory/wp/products'
 
+const getArrayParam = (param?: string[] | string): string[] | undefined => {
+  if (param) {
+    if (typeof param === 'string') return [param]
+    else return [...param]
+  }
+}
+
 const nextAPIProducts = (
   req: NextApiRequest,
   res: NextApiResponse<Product[] | null>
@@ -10,6 +17,8 @@ const nextAPIProducts = (
     perPage: parseInt(`${req.query.perPage || 0}`, 10),
     orderBy: `${req.query.orderBy || 'date'}`,
     order: `${req.query.order || 'desc'}`,
+    exclude: getArrayParam(req.query['exclude[]'])?.map(parseFloat),
+    include: getArrayParam(req.query['include[]'])?.map(parseFloat),
   }
 
   if (req.query.maxPrice) {

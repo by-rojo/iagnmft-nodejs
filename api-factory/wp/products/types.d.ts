@@ -52,7 +52,7 @@ interface Product {
   cross_sell_ids: number[]
   parent_id: number
   purchase_note: string
-  categories: unknown
+  categories: ProductCategory[]
   tags: unknown[]
   images: WPImage[]
   attributes: []

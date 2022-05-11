@@ -1,7 +1,7 @@
 import classNames from 'classnames'
 import Image from 'next/image'
 import Link from 'next/link'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import InfiniteScroll from 'react-infinite-scroller'
 import { getProductsPublicAPI } from '../../../../api-factory/api/client/products'
 import {
@@ -12,22 +12,28 @@ import {
 import useStaticHomePageData from '../../hooks'
 import style from './style.module.scss'
 
-const RecentlyAddedSection: React.FC = () => {
+const RecentlyAddedSection: React.FC<
+  WPParams & { pageStart?: number; sectionTitle?: string }
+> = ({ pageStart, sectionTitle, ...wpParams }) => {
   const { recentlyAddedProducts } = useStaticHomePageData()
   const [rows, setRows] = useState(recentlyAddedProducts || [])
+  const [hasMore, setHasMore] = useState(false)
 
   return (
     <section className="mt-5">
       <div className="container px-5">
-        <h2 className="text-center my-5 pt-3">Recently Added</h2>
+        <h2 className="text-center my-5 pt-3">
+          {sectionTitle || 'Recently Added'}
+        </h2>
       </div>
       <div className="container">
         <InfiniteScroll
-          pageStart={1}
+          pageStart={pageStart ?? 0}
           threshold={SCROLL_LOADER_THRESHOLD}
           loadMore={(page) =>
             getProductsPublicAPI({
               ...DEFAULT_RECENT_PRODUCTS_PARAMS,
+              ...wpParams,
               page,
             }).then((response) => {
               if (response && response.length > 0) {
@@ -36,11 +42,16 @@ const RecentlyAddedSection: React.FC = () => {
                 response.forEach((item) => {
                   newRows.push(item)
                 })
+                if (response.length < DEFAULT_RECENT_PRODUCTS_PARAMS.perPage) {
+                }
+                setHasMore(
+                  response.length === DEFAULT_RECENT_PRODUCTS_PARAMS.perPage
+                )
                 setRows(newRows)
               }
             })
           }
-          hasMore
+          hasMore={hasMore}
           loader={
             <div
               className="loader d-flex justify-content-center align-items-center p-5"
@@ -81,8 +92,8 @@ const RecentlyAddedSection: React.FC = () => {
                           )}
                         >
                           <Image
-                            alt={product.images?.[0].alt ?? 'Product Image'}
-                            src={product.images?.[0].src ?? DEFAULT_BLUR_URL}
+                            alt={product.images?.[0]?.alt ?? 'Product Image'}
+                            src={product.images?.[0]?.src ?? DEFAULT_BLUR_URL}
                             layout="fill"
                             objectFit="contain"
                             quality={100}

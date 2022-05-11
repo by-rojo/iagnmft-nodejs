@@ -22,6 +22,8 @@ wp.products = wp.registerRoute('wc/v3', '/products/(?P<id>\\d+)', {
     'slug',
     'max_price',
     'min_price',
+    'exclude',
+    'include',
   ],
 })
 
@@ -34,11 +36,15 @@ const getProducts = ({
   minPrice,
   order = 'desc',
   slug,
+  exclude,
+  include,
 }: WPParams): Promise<Product[]> => {
   return wp
     .products()
     .category(category)
     .slug(slug)
+    .exclude(exclude)
+    .include(include)
     .max_price(maxPrice === 0 ? undefined : maxPrice)
     .min_price(minPrice === 0 ? undefined : minPrice)
     .per_page(perPage)

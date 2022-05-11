@@ -17,6 +17,8 @@ interface WPParams {
   maxPrice?: number
   minPrice?: number
   parent?: number
+  exclude?: number[]
+  include?: number[]
   orderBy?:
     | string
     | 'date'

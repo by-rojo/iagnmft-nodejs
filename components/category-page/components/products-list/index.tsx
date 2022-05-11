@@ -5,7 +5,6 @@ import React, { useContext } from 'react'
 import InfiniteScroll from 'react-infinite-scroller'
 import {
   DEFAULT_BLUR_URL,
-  DEFAULT_CATEGORY_PARAMS,
   SCROLL_LOADER_THRESHOLD,
 } from '../../../../constants'
 import ProductFilters from '../product-filters'
@@ -71,8 +70,8 @@ const ProductsList: React.FC = () => {
                           )}
                         >
                           <Image
-                            alt={product.images?.[0].alt ?? 'Product Image'}
-                            src={product.images?.[0].src ?? DEFAULT_BLUR_URL}
+                            alt={product.images?.[0]?.alt ?? 'Product Image'}
+                            src={product.images?.[0]?.src ?? DEFAULT_BLUR_URL}
                             layout="fill"
                             objectFit="contain"
                             quality={100}
