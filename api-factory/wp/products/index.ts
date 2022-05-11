@@ -33,10 +33,12 @@ const getProducts = ({
   maxPrice,
   minPrice,
   order = 'desc',
+  slug,
 }: WPParams): Promise<Product[]> => {
   return wp
     .products()
     .category(category)
+    .slug(slug)
     .max_price(maxPrice === 0 ? undefined : maxPrice)
     .min_price(minPrice === 0 ? undefined : minPrice)
     .per_page(perPage)
@@ -47,8 +49,9 @@ const getProducts = ({
       return data.map((product) => {
         return {
           ...product,
-          short_description: cleanHtmlString(product.short_description),
+          short_description: cleanHtmlString(product.short_description, true),
           name: cleanHtmlString(product.name),
+          description: cleanHtmlString(product.description, true),
           permalink: permalinkToRelativePath(product.permalink),
         }
       })

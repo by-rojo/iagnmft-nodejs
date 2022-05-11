@@ -3,7 +3,6 @@ import wpMenues from '../../../api-factory/wp/menus'
 import wpProducts from '../../../api-factory/wp/products'
 import wpProductsCategories from '../../../api-factory/wp/products/categories'
 import Footer from '../../../components/footer'
-import Page from '../../../components/category-page'
 import NavBar from '../../../components/nav-bar'
 import {
   DEFAULT_PRODUCT_CATEGORY_PARAMS,
@@ -11,20 +10,13 @@ import {
 } from '../../../constants'
 import { StaticPageContext } from '../../../context/static-page-context'
 import AppHead from '../../../components/app-head'
+import Page from '../../../components/product-page'
 
-const CategoryPage: NextPage<CategoryPageStaticData> = ({
-  menu,
-  products,
-  category,
-  childCategories,
-}) => {
+const ProductPage: NextPage<ProductPageStaticData> = ({ menu, product }) => {
   return (
-    <StaticPageContext data={{ menu, products, category, childCategories }}>
+    <StaticPageContext data={{ menu, product }}>
       <>
-        <AppHead
-          title={`${category.name} Products`}
-          description={category.description}
-        />
+        <AppHead title={`${product.name}`} description={product.description} />
         <NavBar />
         <Page />
         <Footer />
@@ -35,12 +27,12 @@ const CategoryPage: NextPage<CategoryPageStaticData> = ({
 
 // This function gets called at build time
 export async function getStaticPaths() {
-  const productCategories = await wpProductsCategories({
-    ...DEFAULT_PRODUCT_CATEGORY_PARAMS,
-    perPage: 8,
+  const products = await wpProducts({
+    ...DEFAULT_RECENT_PRODUCTS_PARAMS,
+    perPage: DEFAULT_RECENT_PRODUCTS_PARAMS.perPage * 3,
   })
 
-  const paths = productCategories.map((item) => ({
+  const paths = products.map((item) => ({
     params: { slug: item.slug },
   }))
 
@@ -53,33 +45,16 @@ export async function getStaticPaths() {
 // revalidation is enabled and a new request comes in
 export async function getStaticProps({ params }: { params: { slug: string } }) {
   const menu = await wpMenues()
-  const [category] = await wpProductsCategories({
-    ...DEFAULT_PRODUCT_CATEGORY_PARAMS,
-    perPage: 1,
-    slug: params.slug,
-  })
-
-  const childCategories = await wpProductsCategories({
-    ...DEFAULT_PRODUCT_CATEGORY_PARAMS,
-    perPage: 50,
-    parent: category.id,
-  })
 
   const products = await wpProducts({
     ...DEFAULT_RECENT_PRODUCTS_PARAMS,
-    category: category.id,
+    slug: params.slug,
   })
 
   return {
     props: {
       menu: menu.message ? { data: [], message: menu.message } : { data: menu },
-      products,
-      category,
-      childCategories: childCategories.map((childCategory) => ({
-        id: childCategory.id,
-        slug: childCategory.slug,
-        name: childCategory.name,
-      })),
+      product: products?.[0] || {},
     },
     // Next.js will attempt to re-generate the page:
     // - When a request comes in
@@ -88,4 +63,4 @@ export async function getStaticProps({ params }: { params: { slug: string } }) {
   }
 }
 
-export default CategoryPage
+export default ProductPage

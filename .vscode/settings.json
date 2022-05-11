@@ -8,7 +8,7 @@
     "source.fixAll": true,
     "source.organizeImports": false
   },
-  "files.autoSave": "afterDelay",
+  "files.autoSave": "off",
   "editor.defaultFormatter": "dbaeumer.vscode-eslint",
   "[json]": {
     "editor.formatOnSave": true,
