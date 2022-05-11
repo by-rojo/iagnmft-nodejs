@@ -61,15 +61,7 @@ const ProductPage: React.FC = () => {
   )
   return (
     <>
-      <div className="container my-5">
-        <div
-          className={classNames(
-            'sticky-top d-none d-lg-block',
-            style.buyNowPanel
-          )}
-        >
-          {buyNowPanel}
-        </div>
+      <div className="container my-5 d-lg-flex justify-content-between">
         <div>
           <h1
             className={classNames(
@@ -116,11 +108,20 @@ const ProductPage: React.FC = () => {
               </div>
             )
           })}
+
           <div
             className={classNames('d-block d-lg-none', style.buyNowPanelMobile)}
           >
             {buyNowPanel}
           </div>
+        </div>
+        <div
+          className={classNames(
+            'sticky-top d-none d-lg-flex align-items-center',
+            style.buyNowPanel
+          )}
+        >
+          {buyNowPanel}
         </div>
 
         <hr className="mt-5" />

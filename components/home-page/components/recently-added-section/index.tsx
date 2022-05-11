@@ -17,7 +17,7 @@ const RecentlyAddedSection: React.FC<
 > = ({ pageStart, sectionTitle, ...wpParams }) => {
   const { recentlyAddedProducts } = useStaticHomePageData()
   const [rows, setRows] = useState(recentlyAddedProducts || [])
-  const [hasMore, setHasMore] = useState(false)
+  const [hasMore, setHasMore] = useState(true)
 
   return (
     <section className="mt-5">
