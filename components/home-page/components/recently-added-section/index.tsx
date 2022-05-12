@@ -1,7 +1,7 @@
 import classNames from 'classnames'
 import Image from 'next/image'
 import Link from 'next/link'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import InfiniteScroll from 'react-infinite-scroller'
 import { getProductsPublicAPI } from '../../../../api-factory/api/client/products'
 import {

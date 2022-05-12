@@ -7,6 +7,16 @@ import classNames from 'classnames'
 import Link from 'next/link'
 import RecentlyAddedSection from '../home-page/components/recently-added-section'
 
+const generate_lead = (product?: Product): void =>
+  window.gtag('event', 'generate_lead', {
+    name: product?.name,
+    id: product?.id,
+    slug: product?.slug,
+    external_url: product?.external_url,
+    sale_price: product?.sale_price,
+    regular_price: product?.regular_price,
+  })
+
 const ProductPage: React.FC = () => {
   const { product } = useStaticProductPageData()
 
@@ -50,6 +60,7 @@ const ProductPage: React.FC = () => {
       </div>
       <Link passHref href={product?.external_url || '#'}>
         <a
+          onClick={() => generate_lead(product)}
           target="_blank"
           rel="nofollow rereferer"
           className="btn btn-primary mt-4 btn-lg fw-bolder"
@@ -81,31 +92,41 @@ const ProductPage: React.FC = () => {
           </div>
           {product?.images?.map((image, i) => {
             return (
-              <div key={image.id} className="d-flex d-lg-block">
-                <div
-                  className={classNames(
-                    style.imageContainer,
-                    'card text-white bg-dark d-inline-block p-3 mb-3 mx-auto'
-                  )}
+              <Link key={image.id} href={product?.external_url || '#'} passHref>
+                <a
+                  className="d-flex"
+                  onClick={() => generate_lead(product)}
+                  target="_blank"
+                  rel="nofollow noreferrer"
                 >
-                  <Image
-                    alt={image.alt ?? 'Product Image'}
-                    placeholder="blur"
-                    width={500}
-                    height={500}
-                    objectPosition="center"
-                    objectFit="cover"
-                    quality={100}
-                    blurDataURL={DEFAULT_BLUR_URL}
-                    src={image.src}
-                  />
-                  {i === 0 && (
-                    <h1 className="w-auto position-absolute top-0 p-3 d-none d-lg-block">
-                      {product?.name}
-                    </h1>
-                  )}
-                </div>
-              </div>
+                  <div className="d-flex d-lg-block">
+                    <div
+                      className={classNames(
+                        style.imageContainer,
+                        'card text-white bg-dark d-inline-block p-3 mb-3 position-relative mx-auto'
+                      )}
+                    >
+                      <Image
+                        alt={image.alt ?? 'Product Image'}
+                        placeholder="blur"
+                        width={500}
+                        height={500}
+                        objectPosition="center"
+                        objectFit="cover"
+                        quality={100}
+                        blurDataURL={DEFAULT_BLUR_URL}
+                        src={image.src}
+                      />
+
+                      {i === 0 && (
+                        <h1 className="w-auto position-absolute top-0 p-3 d-none d-lg-block">
+                          {product?.name}
+                        </h1>
+                      )}
+                    </div>
+                  </div>
+                </a>
+              </Link>
             )
           })}
 

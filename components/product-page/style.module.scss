@@ -2,6 +2,8 @@
 .buyNowPanel{
   height: calc(100vh - 56px);
   z-index: 1;
+  max-width: 530px;
+  margin-left: 2rem;
 }
 
 .scrollableY {
@@ -13,6 +15,10 @@
   h1 {
     text-shadow: 2px 2px 2px #222 ;
     background: linear-gradient(to bottom,rgb(50 50 50 / 60%) 0,transparent 100%)
+  }
+
+  img {
+    min-width: 500px !important;
   }
 }
 
@@ -30,6 +36,7 @@
   line-height: 1;
   animation: triangle-animation 1s ease-in-out infinite alternate;
 }
+
 
 .buyNowPanelMobile {
   [class*=card] {
