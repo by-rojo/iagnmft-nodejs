@@ -123,5 +123,31 @@ const AnyComponent: React.FC = () => {
 
 export default AnyComponent
 ```
+
+## ENV Variables
+There are several places you should update the env variables if you have a change or you need to add something. 
+
+If you are using Vercel:
+
+* go the the main dashboard of your application
+* click `settings`
+* navigate to `Environment Variables`
+* add your env variables and secrets through the UI
+
+If you are using something else – Look up how to safely add env variables to _____. Where blank could be one of AWS, GC, GoDaddy, Site5, HostGator, etc...
+
+Once you add the envs to your production build:
+
+* navigate to the project code 
+* open .env and add your env variable to the file DO NOT PUT A VALUE: `MY_VARIABLE=`
+* ALL VARIABLES are read as `string`s by the time it gets to the JS,`MY_VARIABLE=` should be undefined at this point
+
+Setup your `.env.local` file - the place to keep secrets secret on yoru machine and not expose them to the internet. Put super top secret things in there like api keys, etc...
+
+* Create a `.env.local` file if you havn't made one already
+* Now add your variable with a value `MY_VARIABLE=test`
+* Insure that the `.env.local` file is gitignored (it is by default)
+* Restart your server and push your changes and deploy your code 
+
 ## TODO
 [ ] Add unit tests
