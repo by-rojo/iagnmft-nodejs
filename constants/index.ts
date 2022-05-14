@@ -7,6 +7,13 @@ export const DEFAULT_RECENT_PRODUCTS_PARAMS = {
   orderBy: 'date',
 }
 
+export const DEFAULT_BLOGS_PARAMS = {
+  page: 1,
+  perPage: 20,
+  orderBy: 'date',
+  order: 'desc',
+}
+
 export const DEFAULT_CATEGORY_PARAMS = {
   perPage: 18,
   orderBy: 'title',
