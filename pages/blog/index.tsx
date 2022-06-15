@@ -1,8 +1,6 @@
 import type { NextPage } from 'next'
 import wpMenues from '../../api-factory/wp/menus'
 import { getSlimPayloadOfBlogs } from '../../api-factory/wp/blogs'
-import wpProducts from '../../api-factory/wp/products'
-import wpProductsCategories from '../../api-factory/wp/products/categories'
 import Footer from '../../components/footer'
 import { dehydrate, QueryClient } from 'react-query'
 import NavBar from '../../components/nav-bar'
@@ -31,12 +29,17 @@ const BlogPage: NextPage<BlogsPageStaticData> = ({ menu }) => {
 // This function gets called at build time on server-side.
 // It may be called again, on a serverless function, if
 // revalidation is enabled and a new request comes in
-export async function getStaticProps() {
+export async function getServerSideProps({
+  query,
+}: {
+  query: { page: string }
+}) {
   const queryClient = new QueryClient()
   const menu = await wpMenues()
+  const page = parseInt(query.page, 10) || 1
 
   await queryClient.prefetchQuery('blogs', () =>
-    getSlimPayloadOfBlogs(DEFAULT_BLOGS_PARAMS).then(
+    getSlimPayloadOfBlogs({ ...DEFAULT_BLOGS_PARAMS, page }).then(
       removeUndefinedDataFromPageProps
     )
   )
@@ -46,10 +49,6 @@ export async function getStaticProps() {
       dehydratedState: dehydrate(queryClient),
       menu: menu.message ? { data: [], message: menu.message } : { data: menu },
     },
-    // Next.js will attempt to re-generate the page:
-    // - When a request comes in
-    // - At most once every 10 seconds
-    revalidate: parseInt(`${process.env.HOME_PAGE_CACHE_SECONDS ?? 60}`, 10),
   }
 }
 

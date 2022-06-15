@@ -8,6 +8,11 @@ interface WPImage {
   name: string
   src: tring
 }
+
+interface WPPageData {
+  total: number
+  totalPages: number
+}
 interface WPParams {
   order?: 'desc' | 'asc' | string
   perPage?: number

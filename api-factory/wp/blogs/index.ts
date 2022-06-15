@@ -10,14 +10,14 @@ const wp = new wpapi({
   password: WP_PASS,
 })
 
-export const getBlogs = (params: WPParams): Promise<WPBlog[]> => {
+export const getBlogs = (params: WPParams): Promise<WPBlogs> => {
   return wp
     .posts()
     .page(params.page || DEFAULT_BLOGS_PARAMS.page)
     .perPage(params.perPage || DEFAULT_BLOGS_PARAMS.perPage)
     .orderby(params.orderBy || DEFAULT_BLOGS_PARAMS.orderBy)
     .order((params.order || DEFAULT_BLOGS_PARAMS.order) as 'asc' | 'desc')
-    .then((data: WPBlog[]) => {
+    .then((data: WPBlogs) => {
       const featuredImages = data.map((item) => item.featured_media)
 
       const uniqueIds = featuredImages.filter(
@@ -40,9 +40,11 @@ export const getBlogs = (params: WPParams): Promise<WPBlog[]> => {
     })
 }
 
-export const getSlimPayloadOfBlogs = (params: WPParams): Promise<WPBlog[]> => {
+export const getSlimPayloadOfBlogs = (
+  params: WPParams
+): Promise<WPMutatedBlogPayload> => {
   return getBlogs(params).then((blogs) => {
-    return blogs.map(
+    const retVal: WPBlogs = blogs.map(
       ({
         id,
         title,
@@ -101,6 +103,13 @@ export const getSlimPayloadOfBlogs = (params: WPParams): Promise<WPBlog[]> => {
         }
       }
     )
+    return {
+      data: retVal,
+      paging: {
+        total: blogs._paging.total,
+        totalPages: blogs._paging.totalPages,
+      },
+    }
   })
 }
 

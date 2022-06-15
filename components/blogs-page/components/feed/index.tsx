@@ -1,48 +1,73 @@
 import useBlogs from '../../../../api-factory/api/client/products/use-blogs'
 import { DEFAULT_BLOGS_PARAMS, DEFAULT_BLUR_URL } from '../../../../constants'
-import Image from 'next/image'
+import classNames from 'classnames'
 import Html from '../../../html'
 import Link from 'next/link'
 import Paginate from '../../../paginate'
-
+import Card from '../../../card'
+import CardImg from '../../../card/card-img'
+import CardTitle from '../../../card/card-title'
+import CardBody from '../../../card/card-body'
+import CardText from '../../../card/card-text'
+import style from './style.module.scss'
+import { useRouter } from 'next/router'
 const Feed: React.FC = () => {
-  const { data } = useBlogs(DEFAULT_BLOGS_PARAMS)
-
+  const { data: blogs } = useBlogs(DEFAULT_BLOGS_PARAMS)
+  const router = useRouter()
   return (
     <div>
-      {data?.map((item) => {
+      {blogs?.data?.map((item, i) => {
         const media = item.media?.[0]
         const src =
           media?.media_details?.sizes?.full?.source_url || DEFAULT_BLUR_URL
         const alt = media?.alt_text || 'Featured Blog Image'
 
         return (
-          <div key={item.id}>
+          <div key={item.id} className={classNames(style.feedCard, 'mb-5')}>
             <Link href={`/blog/${item?.slug}`} passHref>
-              <a>
-                <Image
-                  alt={alt}
-                  placeholder="blur"
-                  width={500}
-                  height={500}
-                  objectPosition="center"
-                  objectFit="cover"
-                  quality={100}
-                  blurDataURL={DEFAULT_BLUR_URL}
-                  src={src}
-                />
-                <h2>
-                  <Html content={item.title?.rendered} />
-                </h2>
-                <div>
-                  <Html content={item.excerpt?.rendered} />
-                </div>
+              <a className="text-decoration-none text-dark">
+                <Card>
+                  <CardImg
+                    alt={alt}
+                    placeholder="blur"
+                    width={800}
+                    height={400}
+                    priority={i < 2}
+                    objectPosition="center"
+                    objectFit="cover"
+                    quality={100}
+                    blurDataURL={DEFAULT_BLUR_URL}
+                    src={src}
+                  />
+                  <CardBody>
+                    <CardTitle>
+                      <Html content={item.title?.rendered} />
+                    </CardTitle>
+                    <CardText>
+                      <Html content={item.excerpt?.rendered} />
+                    </CardText>
+                  </CardBody>
+                </Card>
               </a>
             </Link>
           </div>
         )
       })}
-      <Paginate pageCount={20} onPageChange={() => {}} />
+
+      <Paginate
+        hrefAllControls
+        disableInitialCallback
+        initialPage={(parseInt(router.query.page as string, 10) || 1) - 1}
+        pageCount={blogs?.paging.totalPages || 10}
+        onPageChange={(page) => {
+          //router.push('?page=' + (page.selected + 1))
+          window.location = ('?page=' + (page.selected + 1)) as (
+            | string
+            | Location
+          ) &
+            Location
+        }}
+      />
     </div>
   )
 }

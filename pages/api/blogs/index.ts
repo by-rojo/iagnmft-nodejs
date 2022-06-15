@@ -4,7 +4,7 @@ import { getSlimPayloadOfBlogs } from '../../../api-factory/wp/blogs'
 
 const nextAPIBlogs = (
   req: NextApiRequest,
-  res: NextApiResponse<WPBlog[] | null>
+  res: NextApiResponse<WPMutatedBlogPayload | null>
 ) => {
   const params: WPParams = {
     page: parseInt(`${req.query.page || 1}`, 10),
@@ -20,7 +20,7 @@ const nextAPIBlogs = (
     params.category = parseInt(`${req.query.category || 0}`, 10)
   }
   return getSlimPayloadOfBlogs(params)
-    .then((blogs: WPBlog[]) => {
+    .then((blogs: WPMutatedBlogPayload) => {
       return res.status(200).json(blogs)
     })
     .catch((e: Error) => {

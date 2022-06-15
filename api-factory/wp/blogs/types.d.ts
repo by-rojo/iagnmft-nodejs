@@ -51,3 +51,14 @@ interface WPBlog {
   }
   media?: WPMedia[]
 }
+
+//its array-like and not an array
+type WPBlogArray = WPBlog[]
+interface WPBlogs extends WPBlogArray {
+  _paging: WPPageData
+}
+
+interface WPMutatedBlogPayload {
+  data: WPBlog[]
+  paging: WPPageData
+}
