@@ -13,6 +13,7 @@ const wp = new wpapi({
 export const getBlogs = (params: WPParams): Promise<WPBlogs> => {
   return wp
     .posts()
+    .slug(params.slug || '')
     .page(params.page || DEFAULT_BLOGS_PARAMS.page)
     .perPage(params.perPage || DEFAULT_BLOGS_PARAMS.perPage)
     .orderby(params.orderBy || DEFAULT_BLOGS_PARAMS.orderBy)
@@ -44,7 +45,7 @@ export const getSlimPayloadOfBlogs = (
   params: WPParams
 ): Promise<WPMutatedBlogPayload> => {
   return getBlogs(params).then((blogs) => {
-    const retVal: WPBlogs = blogs.map(
+    const retVal = blogs.map(
       ({
         id,
         title,

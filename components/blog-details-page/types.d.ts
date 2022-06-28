@@ -1,0 +1,3 @@
+interface BlogsPageStaticData {
+  menu: MenuData
+}

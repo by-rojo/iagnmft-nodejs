@@ -12,10 +12,14 @@ const nextAPIBlogs = (
       `${req.query.perPage || DEFAULT_BLOGS_PARAMS.perPage}`,
       10
     ),
+
     orderBy: `${req.query.orderBy || DEFAULT_BLOGS_PARAMS.orderBy}`,
     order: `${req.query.order || DEFAULT_BLOGS_PARAMS.order}`,
   }
 
+  if (req.query.slug) {
+    params.slug = `${req.query.slug}`
+  }
   if (req.query.category) {
     params.category = parseInt(`${req.query.category || 0}`, 10)
   }
