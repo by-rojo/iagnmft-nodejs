@@ -4,11 +4,15 @@ import { getSlimPayloadOfBlogs } from '../../api-factory/wp/blogs'
 import Footer from '../../components/footer'
 import { dehydrate, QueryClient } from 'react-query'
 import NavBar from '../../components/nav-bar'
-import { DEFAULT_BLOGS_PARAMS } from '../../constants'
+import {
+  DEFAULT_BLOGS_PARAMS,
+  DEFAULT_TOP_PRODUCTS_PARAMS,
+} from '../../constants'
 import { StaticPageContext } from '../../context/static-page-context'
 import AppHead from '../../components/app-head'
 import BlogsPage from '../../components/blogs-page'
 import { removeUndefinedDataFromPageProps } from '../../utils'
+import wpProducts from '../../api-factory/wp/products'
 
 const BlogPage: NextPage<BlogsPageStaticData> = ({ menu }) => {
   return (
@@ -42,6 +46,10 @@ export async function getServerSideProps({
     getSlimPayloadOfBlogs({ ...DEFAULT_BLOGS_PARAMS, page }).then(
       removeUndefinedDataFromPageProps
     )
+  )
+
+  await queryClient.prefetchQuery('products', () =>
+    wpProducts(DEFAULT_TOP_PRODUCTS_PARAMS)
   )
 
   return {

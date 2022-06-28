@@ -23,23 +23,25 @@ const Feed: React.FC = () => {
         const alt = media?.alt_text || 'Featured Blog Image'
 
         return (
-          <div key={item.id} className={classNames(style.feedCard, 'mb-5')}>
+          <div
+            key={item.id}
+            className={classNames(style.feedCardContainer, 'mb-5')}
+          >
             <Link href={`/blog/${item?.slug}`} passHref>
-              <a className="text-decoration-none text-dark">
-                <Card>
+              <a className="text-decoration-none text-light">
+                <Card className={style.feedCard}>
                   <CardImg
                     alt={alt}
                     placeholder="blur"
-                    width={800}
-                    height={400}
                     priority={i < 2}
+                    layout="fill"
                     objectPosition="center"
                     objectFit="cover"
                     quality={100}
                     blurDataURL={DEFAULT_BLUR_URL}
                     src={src}
                   />
-                  <CardBody>
+                  <CardBody className={style.cardBody}>
                     <CardTitle>
                       <Html content={item.title?.rendered} />
                     </CardTitle>
@@ -60,7 +62,6 @@ const Feed: React.FC = () => {
         initialPage={(parseInt(router.query.page as string, 10) || 1) - 1}
         pageCount={blogs?.paging.totalPages || 10}
         onPageChange={(page) => {
-          //router.push('?page=' + (page.selected + 1))
           window.location = ('?page=' + (page.selected + 1)) as (
             | string
             | Location

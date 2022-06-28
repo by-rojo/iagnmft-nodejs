@@ -1,0 +1,15 @@
+@import "../../../styles/module-utils";
+
+.card {
+  span::after {
+    background: linear-gradient(rgba($primary, 0.3), $black);
+    opacity: 1;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    content: " ";
+    top: 0;
+    left: 0;
+    transition: all 0.5s ease-in-out;
+  }
+}
