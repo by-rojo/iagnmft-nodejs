@@ -1,0 +1,15 @@
+.feedCardContainer {
+  width: 100%;
+
+  .feedCard {
+    height: 300px;
+  }
+
+  .cardBody {
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    text-shadow: 0 0 5px black;
+  }
+}
