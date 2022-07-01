@@ -222,4 +222,6 @@ code --install-extension Zignd.html-css-class-completion
 
 [x] Add link for purchase buttons on blog and blog detail page
 
-[ ] Fix nav links
+[x] Fix nav links
+
+[x] Add product sub category page
