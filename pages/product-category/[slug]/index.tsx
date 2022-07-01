@@ -12,7 +12,7 @@ import {
 import { StaticPageContext } from '../../../context/static-page-context'
 import AppHead from '../../../components/app-head'
 
-const CategoryPage: NextPage<CategoryPageStaticData> = ({
+const ProductCategoryPage: NextPage<CategoryPageStaticData> = ({
   menu,
   products,
   category,
@@ -88,4 +88,4 @@ export async function getStaticProps({ params }: { params: { slug: string } }) {
   }
 }
 
-export default CategoryPage
+export default ProductCategoryPage

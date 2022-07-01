@@ -13,6 +13,7 @@ const wp = new wpapi({
 export const getBlogs = (params: WPParams): Promise<WPBlogs> => {
   return wp
     .posts()
+    .category(params.category || '')
     .slug(params.slug || '')
     .page(params.page || DEFAULT_BLOGS_PARAMS.page)
     .perPage(params.perPage || DEFAULT_BLOGS_PARAMS.perPage)

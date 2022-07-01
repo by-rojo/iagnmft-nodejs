@@ -218,8 +218,8 @@ code --install-extension Zignd.html-css-class-completion
 
 [ ] Add social media meta data
 
-[ ] Add comments for blog posts
-
 [ ] Generate application - create a npx script to dynamically generate apps
 
-[ ] Add link for purchase buttons on blog and blog detail page
+[x] Add link for purchase buttons on blog and blog detail page
+
+[ ] Fix nav links

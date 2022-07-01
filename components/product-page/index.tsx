@@ -133,7 +133,7 @@ const ProductPage: React.FC = () => {
           <Breadcrumb text="Home" href="/" />
           <Breadcrumb
             text={product?.categories?.[0]?.name || ''}
-            href={`/category/${product?.categories?.[0]?.slug}`}
+            href={`/product-category/${product?.categories?.[0]?.slug}`}
           />
           <Breadcrumb
             active

@@ -33,9 +33,9 @@ const NavBar: React.FC = () => {
       )}
     >
       <div className="container-fluid">
-        <a className="navbar-brand" href="#">
-          IAGMFT
-        </a>
+        <Link passHref href="/">
+          <a className="navbar-brand">IAGMFT</a>
+        </Link>
         <button
           onClick={() => setToggled(!toggled)}
           className="navbar-toggler"
@@ -84,7 +84,7 @@ const NavBar: React.FC = () => {
                           return (
                             <Link
                               key={childMenuItem.ID}
-                              href={menuItem.url}
+                              href={childMenuItem.url}
                               passHref
                             >
                               <a

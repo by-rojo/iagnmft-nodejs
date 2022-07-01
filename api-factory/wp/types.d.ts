@@ -18,7 +18,7 @@ interface WPParams {
   perPage?: number
   page?: number
   slug?: string
-  category?: number
+  category?: number | string
   maxPrice?: number
   minPrice?: number
   parent?: number
