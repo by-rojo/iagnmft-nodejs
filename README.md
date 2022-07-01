@@ -210,9 +210,11 @@ code --install-extension Zignd.html-css-class-completion
 
 ## TODO
 
-[ ] Add unit tests
+[x]] Add unit tests
 
 [x] Add breadcrumbs
+
+
 
 [ ] Optimize SEO
 
