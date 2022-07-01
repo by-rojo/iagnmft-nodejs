@@ -6,6 +6,8 @@ import style from './style.module.scss'
 import classNames from 'classnames'
 import Link from 'next/link'
 import RecentlyAddedSection from '../home-page/components/recently-added-section'
+import Breadcrumbs from '../breadcrumbs'
+import Breadcrumb from '../breadcrumbs/breadcrumb'
 
 const ProductPage: React.FC = () => {
   const { product } = useStaticProductPageData()
@@ -123,8 +125,22 @@ const ProductPage: React.FC = () => {
         >
           {buyNowPanel}
         </div>
+      </div>
 
+      <div className="container">
         <hr className="mt-5" />
+        <Breadcrumbs>
+          <Breadcrumb text="Home" href="/" />
+          <Breadcrumb
+            text={product?.categories?.[0]?.name || ''}
+            href={`/category/${product?.categories?.[0]?.slug}`}
+          />
+          <Breadcrumb
+            active
+            text={product?.name || ''}
+            href={product?.slug || ''}
+          />
+        </Breadcrumbs>
       </div>
 
       <RecentlyAddedSection

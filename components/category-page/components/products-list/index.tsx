@@ -11,15 +11,25 @@ import ProductFilters from '../product-filters'
 import useStaticCategoryPageData from '../../hooks'
 import style from './style.module.scss'
 import context from '../../context'
+import Breadcrumbs from '../../../breadcrumbs'
+import Breadcrumb from '../../../breadcrumbs/breadcrumb'
 
 const ProductsList: React.FC = () => {
   const { items, dispatch, pageStart, filters, hasMore } = useContext(context)
   const { category } = useStaticCategoryPageData()
 
   return dispatch && pageStart ? (
-    <section className="mt-5">
+    <section className="mt-4">
       <div className="container">
-        <h2 className="my-5 pt-3 mb-0">{category?.name} Category</h2>
+        <Breadcrumbs>
+          <Breadcrumb text="Home" href="/" />
+          <Breadcrumb
+            text={category?.name || ''}
+            active
+            href={category?.slug || ''}
+          />
+        </Breadcrumbs>
+        <h2 className="mb-5 pt-3 mb-0">{category?.name} Category</h2>
         <hr className="mb-4" />
       </div>
 

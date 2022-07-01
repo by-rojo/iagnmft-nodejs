@@ -48,29 +48,31 @@ const ProductFilters: React.FC<ProductFilterProps> = () => {
             </div>
           </div>
 
-          <div className="col-12 col-sm-6 col-md-4 my-4 my-sm-0">
-            <label className="mb-2">
-              <strong>Sub Category</strong>
-            </label>
-            <select
-              className="form-select"
-              name="category"
-              defaultValue={filters?.category}
-              onChange={(event) => {
-                dispatch.onFilterChange({
-                  category: parseInt(event.target.value, 10),
-                })
-              }}
-            >
-              {childCategories?.map((category) => {
-                return (
-                  <option key={category.id} value={category.id}>
-                    {category.name}
-                  </option>
-                )
-              })}
-            </select>
-          </div>
+          {childCategories?.length && (
+            <div className="col-12 col-sm-6 col-md-4 my-4 my-sm-0">
+              <label className="mb-2">
+                <strong>Sub Category</strong>
+              </label>
+              <select
+                className="form-select"
+                name="category"
+                defaultValue={filters?.category}
+                onChange={(event) => {
+                  dispatch.onFilterChange({
+                    category: parseInt(event.target.value, 10),
+                  })
+                }}
+              >
+                {childCategories?.map((category) => {
+                  return (
+                    <option key={category.id} value={category.id}>
+                      {category.name}
+                    </option>
+                  )
+                })}
+              </select>
+            </div>
+          )}
           <div className="col-12 col-sm-6 col-md-4 mb-4 mt-0 mt-sm-4 mt-md-0">
             {(filters?.maxPrice || 0) === 0 &&
             (filters?.minPrice || 0) === 0 ? (
