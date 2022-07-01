@@ -40,12 +40,8 @@ export async function getStaticPaths() {
     perPage: 8,
   })
 
-  const paths = productCategories.map((item) => ({
-    params: { slug: item.slug, subCategory: '' },
-  }))
-
   // We'll pre-render only these paths at build time.
-  return { paths, fallback: 'blocking' }
+  return { paths: [{ slug: '', subCategory: '' }], fallback: 'blocking' }
 }
 
 // This function gets called at build time on server-side.
