@@ -210,7 +210,8 @@ code --install-extension Zignd.html-css-class-completion
 
 ## TODO
 [ ] Add unit tests
-[ ] Add breadcrumbs
+[x] Add breadcrumbs
+[ ] Optimize SEO
 [ ] Add social media meta data
 [ ] Add comments for blog posts
 [ ] Generate application - create a npx script to dynamically generate apps
