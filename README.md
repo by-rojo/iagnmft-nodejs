@@ -210,18 +210,18 @@ code --install-extension Zignd.html-css-class-completion
 
 ## TODO
 
-[ ] Add unit tests
-
-[x] Add breadcrumbs
-
-[ ] Optimize SEO
-
-[ ] Add social media meta data
-
 [ ] Generate application - create a npx script to dynamically generate apps
 
-[x] Add link for purchase buttons on blog and blog detail page
+[ ] Add unit tests
 
-[x] Fix nav links
+[ ] Add premium plugins
 
-[x] Add product sub category page
+[ ] Add social media meta data and sharing - premium plugin
+
+[ ] Optimize SEO - premium plugin
+
+[ ] Add model popup with newsletter signup with 10% off - premium plugin
+
+[ ] Add comments to blog posts and product pages - preium plugin
+
+[ ] Create Landing Page for buying Plugins
