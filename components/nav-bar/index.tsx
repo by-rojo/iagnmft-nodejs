@@ -1,7 +1,7 @@
 import cNames from 'classnames'
 import Link from 'next/link'
 import React, { useState } from 'react'
-import { NAV_BREAKPOINT } from '../../constants'
+import { COMPANY_NAME, NAV_BREAKPOINT } from '../../constants'
 import useStaticHomePageData from '../home-page/hooks'
 import styles from './style.module.scss'
 
@@ -34,7 +34,7 @@ const NavBar: React.FC = () => {
     >
       <div className="container-fluid">
         <Link passHref href="/">
-          <a className="navbar-brand">IAGMFT</a>
+          <a className="navbar-brand">{COMPANY_NAME}</a>
         </Link>
         <button
           onClick={() => setToggled(!toggled)}

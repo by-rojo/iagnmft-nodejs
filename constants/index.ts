@@ -25,7 +25,7 @@ export const DEFAULT_PRODUCT_CATEGORY_PARAMS = {
 }
 export const DEFAULT_TOP_PRODUCTS_PARAMS = { perPage: 3, orderBy: 'popularity' }
 export const SCROLL_LOADER_THRESHOLD = 1000
-export const COMPANY_NAME = process.env.COMPANY_NAME ?? 'IAGMFT'
+export const COMPANY_NAME = process.env.NEXT_PUBLIC_COMPANY_NAME ?? 'IAGMFT'
 
 export const FACEBOOK_PROFILE_URL =
   process.env.NEXT_PUBLIC_FACEBOOK_PROFILE_URL ?? '#'
