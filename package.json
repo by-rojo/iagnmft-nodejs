@@ -11,7 +11,7 @@
     "lint:css": "stylelint \"**/*.css\" --fix",
     "test": "jest --watch",
     "test:ci": "jest --ci",
-    "prepare": "husky install"
+    "prepare": "husky install | echo no githooks installed"
   },
   "repository": {
     "type": "git",
