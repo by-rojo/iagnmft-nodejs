@@ -31,15 +31,17 @@ const FancyCategoryGrid: React.FC = () => {
                     'fw-bold'
                   )}
                 >
-                  <Image
-                    objectFit="cover"
-                    layout="fill"
-                    objectPosition="top"
-                    src={image?.src}
-                    alt={image?.alt ?? name}
-                    width={300}
-                    height={300}
-                  />
+                  {image?.src && (
+                    <Image
+                      objectFit="cover"
+                      layout="fill"
+                      objectPosition="top"
+                      src={image.src}
+                      alt={image.alt ?? name}
+                      width={300}
+                      height={300}
+                    />
+                  )}
                   <label className="position-relative text-center fs-4">
                     {name}
                   </label>

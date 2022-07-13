@@ -2,7 +2,7 @@ import wpapi from 'wpapi'
 const { WP_USER, WP_PASS, WP_URL } = process.env
 import { cleanHtmlString } from './../../../../utils'
 const wp = new wpapi({
-  endpoint: WP_URL || '',
+  endpoint: `${WP_URL || ''}/wp-json`,
   username: WP_USER,
   password: WP_PASS,
 })

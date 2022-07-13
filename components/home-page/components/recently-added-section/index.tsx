@@ -104,7 +104,7 @@ const RecentlyAddedSection: React.FC<
                       </a>
                     </Link>
                     <div className="card-body">
-                      <Link passHref href={product.permalink}>
+                      <Link passHref href={`/product/${product.slug}`}>
                         <a
                           className="text-black text-decoration-none"
                           onClick={() => {
