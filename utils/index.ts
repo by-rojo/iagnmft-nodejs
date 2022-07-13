@@ -17,10 +17,6 @@ export const cleanHtmlString = (text?: string, lineBreaks?: boolean) => {
   return he.decode(replacedText)
 }
 
-export const permalinkToRelativePath = (path: string): string => {
-  return path.replace(HOST_URL || '', '')
-}
-
 export const removeUndefinedDataFromPageProps = <
   DataItem extends GenericObject
 >(

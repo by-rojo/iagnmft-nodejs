@@ -1,8 +1,5 @@
 import wpapi from 'wpapi'
-import {
-  cleanHtmlString,
-  permalinkToRelativePath,
-} from './../../../utils/index'
+import { cleanHtmlString } from './../../../utils/index'
 const { WP_USER, WP_PASS, WP_URL } = process.env
 
 const wp = new wpapi({
@@ -58,7 +55,6 @@ const getProducts = ({
           short_description: cleanHtmlString(product.short_description, true),
           name: cleanHtmlString(product.name),
           description: cleanHtmlString(product.description, true),
-          permalink: permalinkToRelativePath(product.permalink),
         }
       })
     })
